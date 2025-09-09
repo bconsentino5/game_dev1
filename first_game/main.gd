@@ -2,6 +2,7 @@ extends Node
 
 @export var mob_scene: PackedScene
 var score
+var lives
 
 func game_over():
 	$ScoreTimer.stop()
@@ -10,9 +11,11 @@ func game_over():
 
 func new_game():
 	score = 0
+	lives = 3
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
 	$HUD.update_score(score)
+	$HUD.update_lives(lives)
 	$HUD.show_message("Get Ready")
 
 
@@ -53,3 +56,15 @@ func _on_start_timer_timeout() -> void:
 
 func _ready():
 	pass
+
+func update_lives():
+	if lives > 0:
+		lives -= 1
+	$HUD.update_lives(lives)
+	if lives < 1:
+		$Player.hide() # Player disappears after being hit.
+		# Must be deferred as we can't change physics properties on a physics callback.
+		$Player/CollisionShape2D.set_deferred("disabled", true)
+		game_over()
+	else:
+		pass

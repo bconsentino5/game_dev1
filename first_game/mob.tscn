@@ -59,7 +59,7 @@ position = Vector2(-11, -1)
 scale = Vector2(0.75, 0.75)
 sprite_frames = SubResource("SpriteFrames_pcqmr")
 animation = &"fly"
-frame_progress = 0.107685
+frame_progress = 0.670619
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-11, 0)
