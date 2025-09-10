@@ -9,7 +9,6 @@ Credit:
 
 
 9/7:
-did everything (adding notes from google doc later)
 - following the written tutorial (starting at 10:00)
 - working on the player, having a hard time understanding how scenes work
 - done with player (10:57)
