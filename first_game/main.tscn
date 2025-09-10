@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://jgdexgx12vaq"]
+[gd_scene load_steps=7 format=3 uid="uid://jgdexgx12vaq"]
 
 [ext_resource type="Script" uid="uid://d3ps1m2pxos2e" path="res://main.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://cfdd4o4r217jr" path="res://mob.tscn" id="2_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://dp0bmnb7rqnmj" path="res://player.tscn" id="3_lquwl"]
 [ext_resource type="PackedScene" uid="uid://rl12kvfv30m" path="res://hud.tscn" id="4_1bvp3"]
+[ext_resource type="AudioStream" uid="uid://bkj6nk3cl6mgj" path="res://art/vine-boom-392646.mp3" id="4_lquwl"]
 
 [sub_resource type="Curve2D" id="Curve2D_7mycd"]
 _data = {
@@ -16,6 +17,9 @@ script = ExtResource("1_h2yge")
 mob_scene = ExtResource("2_1bvp3")
 
 [node name="Player" parent="." instance=ExtResource("3_lquwl")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource("4_lquwl")
 
 [node name="MobTimer" type="Timer" parent="."]
 wait_time = 0.5

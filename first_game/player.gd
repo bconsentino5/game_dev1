@@ -3,6 +3,7 @@ signal hit
 
 @export var speed = 400 # How fast the player will move (pixels/sec).
 var screen_size # Size of the game window.
+@onready var audio = $AudioStreamPlayer
 
 func _ready():
 	screen_size = get_viewport_rect().size
@@ -39,6 +40,7 @@ func _process(delta):
 	
 func _on_body_entered(body: Node2D) -> void:
 		hit.emit()
+		audio.play()
 	
 func start(pos):
 	position = pos
