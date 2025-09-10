@@ -57,15 +57,15 @@ jobs:
     # — export HTML5 —
     - name: Export HTML5
       run: |
-        mkdir -p build/web
+        mkdir -p first_game/build/web
         ~/godot/Godot_v${GODOT_VERSION}_linux.x86_64 --headless \
             --path first_game \
-          --export-release "${WEB_PRESET}" build/web/index.html
+          --export-release "${WEB_PRESET}" /build/web/index.html
 
     # — upload artifact for Pages —
     - uses: actions/upload-pages-artifact@v3
       with:
-        path: build/web        # this becomes the Pages content
+        path: first_game/build/web        # this becomes the Pages content
 
   # ───────────────── deploy job ─────────────────
   deploy:
