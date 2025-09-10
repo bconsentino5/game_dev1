@@ -1,19 +1,18 @@
-[gd_scene load_steps=8 format=3 uid="uid://dp0bmnb7rqnmj"]
+[gd_scene load_steps=7 format=3 uid="uid://dp0bmnb7rqnmj"]
 
-[ext_resource type="Texture2D" uid="uid://b1vxrtkt3sg50" path="res://art/playerGrey_up1.png" id="1_hqtel"]
 [ext_resource type="Script" uid="uid://fd4ygpl0vskg" path="res://player.gd" id="1_sweqy"]
-[ext_resource type="Texture2D" uid="uid://b2qo8h1leu1n7" path="res://art/playerGrey_up2.png" id="2_sweqy"]
-[ext_resource type="Texture2D" uid="uid://cyl8nn8v3qsca" path="res://art/playerGrey_walk1.png" id="3_2hs0m"]
-[ext_resource type="Texture2D" uid="uid://cjd45jurb5oka" path="res://art/playerGrey_walk2.png" id="4_1jxqw"]
+[ext_resource type="Texture2D" uid="uid://cciw2mdgmunre" path="res://art/morty_b1.png" id="2_hqtel"]
+[ext_resource type="Texture2D" uid="uid://c8cscgt0lhmxc" path="res://art/morty2.png" id="3_sweqy"]
+[ext_resource type="Texture2D" uid="uid://dueeava54urdy" path="res://art/morty1.png" id="4_2hs0m"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_dw050"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_hqtel")
+"texture": ExtResource("2_hqtel")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_sweqy")
+"texture": ExtResource("3_sweqy")
 }],
 "loop": true,
 "name": &"up",
@@ -21,10 +20,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_2hs0m")
+"texture": ExtResource("4_2hs0m")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_1jxqw")
+"texture": ExtResource("3_sweqy")
 }],
 "loop": true,
 "name": &"walk",
@@ -32,17 +31,19 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b26j0"]
-radius = 27.0
-height = 68.0
+radius = 42.0
+height = 88.0
 
 [node name="Player" type="Area2D"]
 script = ExtResource("1_sweqy")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.23, 0.23)
 sprite_frames = SubResource("SpriteFrames_dw050")
-animation = &"up"
+animation = &"walk"
+frame_progress = 0.435245
+speed_scale = 0.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_b26j0")
