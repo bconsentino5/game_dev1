@@ -25,6 +25,9 @@ func update_score(score):
 func update_lives(lives):
 	$LivesLabel.text = "Lives: " + str(lives)
 	
+func update_level(level):
+	$LevelLabel.text = "Level: " + str(level)
+	
 func _on_start_button_pressed():
 	$StartButton.hide()
 	start_game.emit()

@@ -42,3 +42,14 @@ customizing players (starting at 4:30)
 - modified them so they would work with animations
 - changed the message to say "ricks" instead of "creeps"
 done! (7:00 with breaks in between)
+
+
+----------------------------------------------------------------
+part 2:
+
+add levels:
+- added text "level: 1" on screen & level variable in main (4:58-5:03)
+- 11:29 trying to figure out how many enemies are generated in one round (going to limit and reduce for earlier rounds, gets harder as you go)
+- 12:45 this is taking way too long, i have to think of another way to do this
+- 1:00 thinking about implementing levels first and the velocity of the enemies are just going to take longer this time
+- 2:09 I GIVE UP FOR THE NIGHT. idk why i cant figure out how to get these mobs off the screen. i may need an extension on this
