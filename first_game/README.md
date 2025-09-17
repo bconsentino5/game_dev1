@@ -53,3 +53,6 @@ add levels:
 - 12:45 this is taking way too long, i have to think of another way to do this
 - 1:00 thinking about implementing levels first and the velocity of the enemies are just going to take longer this time
 - 2:09 I GIVE UP FOR THE NIGHT. idk why i cant figure out how to get these mobs off the screen. i may need an extension on this
+-next day-
+- 2:00 got help from Jonas to erase mobs on level up
+- 2:55 he suggested i clean up some of my functions, so im working on that
