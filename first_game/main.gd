@@ -26,23 +26,22 @@ func new_game():
 func _on_mob_timer_timeout() -> void:
 	var x
 	var y
+	
+	var mob_count = count_mobs()
+	print(mob_count)
+	
 	# Create a new instance of the Mob scene.
 	var mob = mob_scene.instantiate()
-
 	# Choose a random location on Path2D.
 	var mob_spawn_location = $MobPath/MobSpawnLocation
 	mob_spawn_location.progress_ratio = randf()
-
 	# Set the mob's position to the random location.
 	mob.position = mob_spawn_location.position
-
 	# Set the mob's direction perpendicular to the path direction.
 	var direction = mob_spawn_location.rotation + PI / 2
-
 	# Add some randomness to the direction.
 	direction += randf_range(-PI / 4, PI / 4)
 	mob.rotation = direction
-
 	# Choose the velocity for the mob.
 	if level == 1:
 		x = 50.0
@@ -55,16 +54,8 @@ func _on_mob_timer_timeout() -> void:
 		y = 200.0
 	var velocity = Vector2(randf_range(x, y), 0.0)
 	mob.linear_velocity = velocity.rotated(direction)
-
 	# Spawn the mob by adding it to the Main scene.
 	add_child(mob)
-	#mob.add_to_group("mob_group")
-	#if score > 2:
-		#for child in mob_scene.get_children():
-			#if child.has_method("_on_visible_on_screen_notifier_2d_screen_exited"): child.queue_free()
-				#
-	#$MobTimer.stop()
-
 
 func _on_score_timer_timeout() -> void:
 	score += 1
@@ -90,39 +81,44 @@ func update_lives():
 		game_over()
 	else:
 		pass
-		
+			
+func remove_mobs():
+	for child in get_children():
+		if child is Mob:
+			child.queue_free()
+
+func count_mobs():
+	var count:= 0
+	for child in get_children():
+		if child is Mob:
+			count += 1
+	return count
+
 func check_level(curr_level):
-	if curr_level == 3:
+	if curr_level == 1:
 		if score == 5:
-			$Player.start($StartPosition.position)
-			$StartTimer.start()
-			$MobTimer.stop()
-			score = 0
-			lives = 3
-			level = 2
-			$HUD.update_score(score)
-			$HUD.update_lives(lives)
-			$HUD.update_level(level)
-			$HUD.show_message("Level 2: Get Ready")
-			$MobTimer.start()
+			level_up(curr_level)
 	elif curr_level == 2:
 		if score == 5:
-			$Player.start($StartPosition.position)
-			$StartTimer.start()
-			$MobTimer.stop()
-			score = 0
-			lives = 3
-			level = 3
-			$HUD.update_score(score)
-			$HUD.update_lives(lives)
-			$HUD.update_level(level)
-			$HUD.show_message("Level 3: Get Ready")
-			$MobTimer.start()
-	elif curr_level == 1:
+			level_up(curr_level)
+	elif curr_level == 3:
 		if score == 5:
+			remove_mobs()
 			$StartTimer.stop()
 			$ScoreTimer.stop()
 			$MobTimer.stop()
 			$HUD.show_message("You win!")
 
-			
+func level_up(curr_level):
+	remove_mobs()
+	$Player.start($StartPosition.position)
+	$MobTimer.stop()
+	$ScoreTimer.stop()
+	score = 0
+	lives = 3
+	level = curr_level + 1
+	$HUD.update_score(score)
+	$HUD.update_lives(lives)
+	$HUD.update_level(level)
+	$HUD.show_message("Level " + str(level) +": Get Ready")
+	$StartTimer.start()
