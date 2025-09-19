@@ -3,16 +3,31 @@ extends CanvasLayer
 # Notifies `Main` node that the button has been pressed
 signal start_game
 
-func show_message(text):
+func show_message(text, wait_time):
 	$Message.text = text
 	$Message.show()
+	$MessageTimer.wait_time = wait_time
 	$MessageTimer.start()
 	
 func show_game_over():
-	show_message("Game Over")
+	show_message("Game Over", 4)
 	# Wait until the MessageTimer has counted down.
 	await $MessageTimer.timeout
+	# ask if they want to play again
+	$Message.text = "Play again?"
+	$Message.show()
+	$StartButton.show()
 
+	$Message.text = "Dodge the Ricks!"
+	$Message.show()
+	# Make a one-shot timer and wait for it to finish.
+	#await get_tree().create_timer(1.0).timeout
+	#$StartButton.show()
+	
+func show_win_lose(message):
+	show_message(message, 5)
+	# Wait until the MessageTimer has counted down.
+	await $MessageTimer.timeout
 	$Message.text = "Dodge the Ricks!"
 	$Message.show()
 	# Make a one-shot timer and wait for it to finish.

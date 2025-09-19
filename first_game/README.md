@@ -56,3 +56,5 @@ add levels:
 -next day-
 - 2:00 got help from Jonas to erase mobs on level up
 - 2:55 he suggested i clean up some of my functions, so im working on that
+- 3:00 working on end game 
+- 3:26 done

@@ -6,30 +6,19 @@ var lives
 var level
 
 func game_over():
+	remove_mobs()
 	$ScoreTimer.stop()
 	$MobTimer.stop()
-	$HUD.show_game_over()
-	
+	$HUD.show_win_lose("Game Over")
 
 func new_game():
-	score = 0
-	lives = 3
-	level = 1
-	$Player.start($StartPosition.position)
-	$StartTimer.start()
-	$HUD.update_score(score)
-	$HUD.update_lives(lives)
-	$HUD.update_level(level)
-	$HUD.show_message("Level 1: Get Ready")
+	level_up(0)
 
 
 func _on_mob_timer_timeout() -> void:
 	var x
 	var y
-	
 	var mob_count = count_mobs()
-	print(mob_count)
-	
 	# Create a new instance of the Mob scene.
 	var mob = mob_scene.instantiate()
 	# Choose a random location on Path2D.
@@ -103,11 +92,7 @@ func check_level(curr_level):
 			level_up(curr_level)
 	elif curr_level == 3:
 		if score == 5:
-			remove_mobs()
-			$StartTimer.stop()
-			$ScoreTimer.stop()
-			$MobTimer.stop()
-			$HUD.show_message("You win!")
+			win_game()
 
 func level_up(curr_level):
 	remove_mobs()
@@ -120,5 +105,12 @@ func level_up(curr_level):
 	$HUD.update_score(score)
 	$HUD.update_lives(lives)
 	$HUD.update_level(level)
-	$HUD.show_message("Level " + str(level) +": Get Ready")
+	$HUD.show_message("Level " + str(level) +": Get Ready", 2)
 	$StartTimer.start()
+	
+func win_game():
+	remove_mobs()
+	$StartTimer.stop()
+	$ScoreTimer.stop()
+	$MobTimer.stop()
+	$HUD.show_win_lose("You win!")
