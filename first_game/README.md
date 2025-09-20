@@ -7,6 +7,7 @@ Credit:
 
 4. source for rick and morty: https://www.nicepng.com/ourpic/u2q8o0q8q8e6a9r5_rick-and-morty-clipart-rick-head-rick-and/
 
+5. https://www.mycutegraphics.com/graphics/hearts/red-heart.html
 
 9/7:
 - following the written tutorial (starting at 10:00)
@@ -58,3 +59,7 @@ add levels:
 - 2:55 he suggested i clean up some of my functions, so im working on that
 - 3:00 working on end game 
 - 3:26 done
+-next day-
+- 9:13 adding "collect hearts" feature
+- 11:45 i can't get that to work. i give up. i'm changing my faucet to be that you just reset to 3 lives when you upgrade a level. i will try to add the extra hearts another time
+done

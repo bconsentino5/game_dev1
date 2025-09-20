@@ -60,6 +60,7 @@ func _ready():
 	pass
 
 func update_lives():
+	
 	if lives > 0:
 		lives -= 1
 	$HUD.update_lives(lives)

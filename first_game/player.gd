@@ -39,6 +39,8 @@ func _process(delta):
 		$AnimatedSprite2D.flip_v = velocity.y > 0
 	
 func _on_body_entered(body: Node2D) -> void:
+		#print(body.name)
+		#if body is $AnimatedSprite2D
 		hit.emit()
 		audio.play()
 	
