@@ -41,8 +41,10 @@ func _process(delta):
 func _on_body_entered(body: Node2D) -> void:
 		#print(body.name)
 		#if body is $AnimatedSprite2D
-		hit.emit()
-		audio.play()
+		if body is Mob:
+			print(body.name)
+			hit.emit()
+			audio.play()
 	
 func start(pos):
 	position = pos

@@ -77,3 +77,4 @@ done
 adding juice
 - 1:56 customizing UI theme to fit rick and morty
 - 2:19 found audios/backgrounds i want to use. theme song (background music) credit 6, "aw jeez" (collision sound) credit 7, garage background credit 8, and "get schwifty" font credit 9
+- 3:00 done adding sounds
