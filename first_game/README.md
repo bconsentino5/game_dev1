@@ -9,6 +9,16 @@ Credit:
 
 5. https://www.mycutegraphics.com/graphics/hearts/red-heart.html
 
+6. https://archive.org/details/tvtunes_27340
+
+7. https://tuna.voicemod.net/sound/6740d628-4759-44f8-9c1c-789821573566
+
+8. https://www.denofgeek.com/tv/rick-and-morty-zoom-backgrounds/
+
+9. https://www.deviantart.com/jonizaak/art/Get-Schwifty-A-Rick-and-Morty-font-638073728
+
+
+
 9/7:
 - following the written tutorial (starting at 10:00)
 - working on the player, having a hard time understanding how scenes work
@@ -63,3 +73,7 @@ add levels:
 - 9:13 adding "collect hearts" feature
 - 11:45 i can't get that to work. i give up. i'm changing my faucet to be that you just reset to 3 lives when you upgrade a level. i will try to add the extra hearts another time
 done
+-----------------------------------------------------
+adding juice
+- 1:56 customizing UI theme to fit rick and morty
+- 2:19 found audios/backgrounds i want to use. theme song (background music) credit 6, "aw jeez" (collision sound) credit 7, garage background credit 8, and "get schwifty" font credit 9

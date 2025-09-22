@@ -9,10 +9,12 @@ func game_over():
 	remove_mobs()
 	$ScoreTimer.stop()
 	$MobTimer.stop()
+	$BackgroundMusic.stop()
 	$HUD.show_win_lose("Game Over")
 
 func new_game():
 	level_up(0)
+	$BackgroundMusic.play()
 
 
 func _on_mob_timer_timeout() -> void:
@@ -89,10 +91,10 @@ func check_level(curr_level):
 		if score == 5:
 			level_up(curr_level)
 	elif curr_level == 2:
-		if score == 5:
+		if score == 6:
 			level_up(curr_level)
 	elif curr_level == 3:
-		if score == 5:
+		if score == 7:
 			win_game()
 
 func level_up(curr_level):

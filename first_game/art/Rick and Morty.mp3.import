@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://d1ymxe0tg1vfs"
+path="res://.godot/imported/Rick and Morty.mp3-4864c71c056a201ab99c7b4f2cc1c8af.mp3str"
+
+[deps]
+
+source_file="res://art/Rick and Morty.mp3"
+dest_files=["res://.godot/imported/Rick and Morty.mp3-4864c71c056a201ab99c7b4f2cc1c8af.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
