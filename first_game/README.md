@@ -13,7 +13,9 @@ Credit:
 
 7. https://tuna.voicemod.net/sound/6740d628-4759-44f8-9c1c-789821573566
 
-8. https://www.denofgeek.com/tv/rick-and-morty-zoom-backgrounds/
+8. all background resources: https://www.denofgeek.com/tv/rick-and-morty-zoom-backgrounds/
+
+https://www.dreamstime.com/portal-space-to-other-universes-portal-space-to-other-universes-isolated-black-background-vector-image252551834
 
 9. https://www.deviantart.com/jonizaak/art/Get-Schwifty-A-Rick-and-Morty-font-638073728
 
@@ -77,4 +79,9 @@ done
 adding juice
 - 1:56 customizing UI theme to fit rick and morty
 - 2:19 found audios/backgrounds i want to use. theme song (background music) credit 6, "aw jeez" (collision sound) credit 7, garage background credit 8, and "get schwifty" font credit 9
-- 3:00 done adding sounds
+- 4:00 done adding sounds
+-break-
+- 8:00 adding background, changing font, cleaning up HUD
+- 8:45 making it so the background looks dark before the game starts and then lightens after start is pressed
+- 9:15 making backgrounds change when levels change
+- 10:00 

@@ -4,17 +4,26 @@ extends Node
 var score
 var lives
 var level
+var garage = load("res://art/garage_background.webp")
+var living_room = load("res://art/living_room.webp")
+var portal = load("res://art/portal.webp")
+
 
 func game_over():
 	remove_mobs()
 	$ScoreTimer.stop()
 	$MobTimer.stop()
 	$BackgroundMusic.stop()
+	$TextureRect.modulate = Color(0.324, 0.324, 0.324, 0.914)
 	$HUD.show_win_lose("Game Over")
 
 func new_game():
+	$TextureRect.texture = garage
+	$TextureRect.scale = Vector2(1.8, 1.8)
+	$TextureRect.position = Vector2(-300, 70)
 	level_up(0)
 	$BackgroundMusic.play()
+	$TextureRect.modulate = Color(0.324, 0.324, 0.324, 0.914)
 
 
 func _on_mob_timer_timeout() -> void:
@@ -57,6 +66,7 @@ func _on_score_timer_timeout() -> void:
 func _on_start_timer_timeout() -> void:
 	$MobTimer.start()
 	$ScoreTimer.start()
+	$TextureRect.modulate = Color(1, 1, 1, 1)
 
 func _ready():
 	pass
@@ -90,14 +100,20 @@ func check_level(curr_level):
 	if curr_level == 1:
 		if score == 5:
 			level_up(curr_level)
+			$TextureRect.texture = living_room
+			$TextureRect.position = Vector2(-660, 70)
 	elif curr_level == 2:
 		if score == 6:
 			level_up(curr_level)
+			$TextureRect.texture = portal
+			$TextureRect.scale = Vector2(.9, .9)
+			$TextureRect.position = Vector2(-135, 70)
 	elif curr_level == 3:
 		if score == 7:
 			win_game()
 
 func level_up(curr_level):
+	$TextureRect.modulate = Color(0.324, 0.324, 0.324, 0.914)
 	remove_mobs()
 	$Player.start($StartPosition.position)
 	$MobTimer.stop()
@@ -116,4 +132,5 @@ func win_game():
 	$StartTimer.stop()
 	$ScoreTimer.stop()
 	$MobTimer.stop()
+	$TextureRect.modulate = Color(0.324, 0.324, 0.324, 0.914)
 	$HUD.show_win_lose("You win!")
