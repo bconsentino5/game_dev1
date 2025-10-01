@@ -1,13 +1,20 @@
-[gd_scene load_steps=9 format=4 uid="uid://jgdexgx12vaq"]
+[gd_scene load_steps=11 format=4 uid="uid://jgdexgx12vaq"]
 
 [ext_resource type="Script" uid="uid://d3ps1m2pxos2e" path="res://main.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://cfdd4o4r217jr" path="res://mob.tscn" id="2_1bvp3"]
 [ext_resource type="Texture2D" uid="uid://cw51tm1i2gixe" path="res://art/garage_background.webp" id="3_7mycd"]
+[ext_resource type="PackedScene" uid="uid://b57p782x2g4rm" path="res://pickle.tscn" id="3_272bh"]
 [ext_resource type="PackedScene" uid="uid://dp0bmnb7rqnmj" path="res://player.tscn" id="3_lquwl"]
 [ext_resource type="PackedScene" uid="uid://rl12kvfv30m" path="res://hud.tscn" id="4_1bvp3"]
 [ext_resource type="AudioStream" uid="uid://ex0y7uefldpg" path="res://art/aw-jeez-rick-made-with-Voicemod.mp3" id="4_lquwl"]
 
 [sub_resource type="Curve2D" id="Curve2D_7mycd"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 480, 0, 0, 0, 0, 0, 480, 720, 0, 0, 0, 0, 0, 720, 0, 0, 0, 0, 0, 0)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_272bh"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 480, 0, 0, 0, 0, 0, 480, 720, 0, 0, 0, 0, 0, 720, 0, 0, 0, 0, 0, 0)
 }
@@ -20,6 +27,7 @@ loop = true
 [node name="Main" type="Node"]
 script = ExtResource("1_h2yge")
 mob_scene = ExtResource("2_1bvp3")
+pickle_scene = ExtResource("3_272bh")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 modulate = Color(0.323584, 0.323584, 0.323584, 0.913725)
@@ -45,6 +53,9 @@ wait_time = 0.5
 wait_time = 2.0
 one_shot = true
 
+[node name="PickleTimer" type="Timer" parent="."]
+wait_time = 2.0
+
 [node name="StartPosition" type="Marker2D" parent="."]
 position = Vector2(240, 450)
 
@@ -53,13 +64,21 @@ curve = SubResource("Curve2D_7mycd")
 
 [node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
 
+[node name="PicklePath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_272bh")
+
+[node name="PickleSpawnLocation" type="PathFollow2D" parent="PicklePath"]
+
 [node name="HUD" parent="." instance=ExtResource("4_1bvp3")]
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamMP3_7mycd")
 
+[connection signal="health" from="Player" to="." method="update_lives"]
 [connection signal="hit" from="Player" to="." method="update_lives"]
+[connection signal="hit" from="Player" to="." method="_on_player_hit"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
+[connection signal="timeout" from="PickleTimer" to="." method="_on_pickle_timer_timeout"]
 [connection signal="start_game" from="HUD" to="." method="new_game"]

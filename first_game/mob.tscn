@@ -59,7 +59,7 @@ metadata/_edit_group_ = true
 position = Vector2(-11, -1)
 scale = Vector2(0.22, 0.22)
 sprite_frames = SubResource("SpriteFrames_pcqmr")
-animation = &"fly"
+animation = &"walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-11, 0)

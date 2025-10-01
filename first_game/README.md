@@ -85,3 +85,17 @@ adding juice
 - 8:45 making it so the background looks dark before the game starts and then lightens after start is pressed
 - 9:15 making backgrounds change when levels change
 - 10:00 
+-----------------------------------------------------
+level design
+- 6:00 ideating about what to add to levels
+- 6:30 going to have pickle ricks flying around for level 2 and if morty hits them, it adds to lives (art from credit 4)
+- 6:33 editing art for animation
+- 6:45 implememting pickles
+- 7:15 trying to debug, wont run when trying to make pickles
+- 7:30 ended up being that the wrong scene was attatched to the pickle file
+- 7:36 pickles keep spawning in the same place, trying to fix it
+- 8:15 realized its because i didnt draw the path
+- 8:30 fixed it. now going to make the pickles spawn less frequently
+- 9:30 finally got the timer to work, now starting making them detect collisions
+- 11:40 godot crashed. lost a ton of progress. trying to fix before deadline, but pushing to github right now just in case
+

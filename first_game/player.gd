@@ -1,5 +1,6 @@
 extends Area2D
 signal hit
+signal health
 
 @export var speed = 400 # How fast the player will move (pixels/sec).
 var screen_size # Size of the game window.
@@ -39,12 +40,12 @@ func _process(delta):
 		$AnimatedSprite2D.flip_v = velocity.y > 0
 	
 func _on_body_entered(body: Node2D) -> void:
-		#print(body.name)
-		#if body is $AnimatedSprite2D
 		if body is Mob:
-			print(body.name)
+			#print(body.name)
 			hit.emit()
 			audio.play()
+		elif body is Pickle:
+			print("hit pickle")
 	
 func start(pos):
 	position = pos
