@@ -1,0 +1,24 @@
+extends RigidBody2D
+class_name Portal
+
+@export var speed = 200 # Pixels per second
+
+func _ready():
+	#var mob_types = Array($AnimatedSprite2D.sprite_frames.get_animation_names())
+	#$AnimatedSprite2D.animation = mob_types.pick_random()
+	#$AnimatedSprite2D.play()
+	pass
+	
+func _process(delta: float) -> void:
+	# Move the sprite to the right
+	position.x += speed * delta
+	# Move the sprite left
+	position.x -= speed * delta
+	# Move the sprite up
+	position.y -= speed * delta
+	# Move the sprite down
+	position.y += speed * delta
+	
+func _on_visible_on_screen_notifier_2d_screen_exited():
+	queue_free()
+	

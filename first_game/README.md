@@ -19,6 +19,7 @@ https://www.dreamstime.com/portal-space-to-other-universes-portal-space-to-other
 
 9. https://www.deviantart.com/jonizaak/art/Get-Schwifty-A-Rick-and-Morty-font-638073728
 
+10. https://www.voicy.network/sounds/e-W76469RkuqILfUo10Gqg-im-pickle-rick
 
 
 9/7:
@@ -97,5 +98,12 @@ level design
 - 8:15 realized its because i didnt draw the path
 - 8:30 fixed it. now going to make the pickles spawn less frequently
 - 9:30 finally got the timer to work, now starting making them detect collisions
-- 11:40 godot crashed. lost a ton of progress. trying to fix before deadline, but pushing to github right now just in case
-
+- 11:00 godot crashed. lost a ton of progress. trying to fix before deadline, but pushing to github right now just in case
+*giving myself an extra hour because i lost an hour due to the crash*
+- 12:08 fixed godot. made it so pickles go away when u hit them
+- 12:15 making it so pickles only come in for round 2 & 3
+- adjusted levels to be harder (score must be higher to win)
+- 12:20 adding pickle rick sound effect (credit 10)
+- 12:30 adding portal gun (credit 4) to make ricks go away for a couple seconds
+- 12:50 making portal gun have gravity, disapear when touched, boom sound when touched, and will make all ricks on screen go away. portal gun is exclusive to level 3
+- 1:00 calling it quits. feels good!

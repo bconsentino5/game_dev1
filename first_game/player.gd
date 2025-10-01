@@ -1,10 +1,13 @@
 extends Area2D
 signal hit
 signal health
+signal portal
 
 @export var speed = 400 # How fast the player will move (pixels/sec).
 var screen_size # Size of the game window.
-@onready var audio = $AudioStreamPlayer
+@onready var hit_audio = $HitAudioPlayer
+@onready var health_audio = $HealthAudioPlayer
+@onready var portal_audio = $PortalAudioPlayer
 
 func _ready():
 	screen_size = get_viewport_rect().size
@@ -43,9 +46,13 @@ func _on_body_entered(body: Node2D) -> void:
 		if body is Mob:
 			#print(body.name)
 			hit.emit()
-			audio.play()
+			hit_audio.play()
 		elif body is Pickle:
-			print("hit pickle")
+			health.emit()
+			health_audio.play()
+		elif body is Portal:
+			portal.emit()
+			portal_audio.play()
 	
 func start(pos):
 	position = pos

@@ -2,6 +2,8 @@ extends Node
 
 @export var mob_scene: PackedScene
 @export var pickle_scene: PackedScene
+@export var portal_scene: PackedScene
+
 var score
 var lives
 var level
@@ -13,6 +15,7 @@ var portal = load("res://art/portal.webp")
 func game_over():
 	remove_mobs()
 	remove_pickles()
+	remove_portals()
 	$ScoreTimer.stop()
 	$MobTimer.stop()
 	$PickleTimer.stop()
@@ -82,13 +85,36 @@ func make_pickle():
 	# Spawn the mob by adding it to the Main scene.
 	add_child(pickle)
 
+func make_portal():
+	var x = 200.0
+	var y = 250.0
+	# Create a new instance of the Mob scene.
+	var portal = portal_scene.instantiate()
+	# Choose a random location on Path2D.
+	var portal_spawn_location = $PortalPath/PortalSpawnLocation
+	portal_spawn_location.progress_ratio = randf()
+	
+	# Set the mob's position to the random location.
+	portal.position = portal_spawn_location.position
+	# Set the mob's direction perpendicular to the path direction.
+	var direction = portal_spawn_location.rotation + PI / 2
+	# Add some randomness to the direction.
+	direction += randf_range(-PI / 4, PI / 4)
+	portal.rotation = direction
+
+	var velocity = Vector2(randf_range(x, y), 0.0)
+	portal.linear_velocity = velocity.rotated(direction)
+	# Spawn the mob by adding it to the Main scene.
+	add_child(portal)
 
 func _on_mob_timer_timeout() -> void:
 	make_mob()
 	
 func _on_pickle_timer_timeout() -> void:
-	if level >= 1:
+	if level >= 2:
 		make_pickle()
+	if level >= 3:
+		make_portal()
 		
 func _on_score_timer_timeout() -> void:
 	score += 1
@@ -104,22 +130,23 @@ func _on_start_timer_timeout() -> void:
 
 func _ready():
 	pass
-
-func update_lives(change):
-	if change == 0:
-		lives += 1
+	
+func increase_lives():
+	lives += 1
+	$HUD.update_lives(lives)
+	remove_pickles()
+	
+func reduce_lives():
+	if lives > 0:
+		lives -= 1
 		$HUD.update_lives(lives)
-	elif change == 1:
-		if lives > 0:
-			lives -= 1
-			$HUD.update_lives(lives)
-		elif lives < 1:
-			$Player.hide() # Player disappears after being hit.
-			# Must be deferred as we can't change physics properties on a physics callback.
-			$Player/CollisionShape2D.set_deferred("disabled", true)
-			game_over()
-		else:
-			pass
+	elif lives < 1:
+		$Player.hide() # Player disappears after being hit.
+		# Must be deferred as we can't change physics properties on a physics callback.
+		$Player/CollisionShape2D.set_deferred("disabled", true)
+		game_over()
+	else:
+		pass
 			
 func remove_mobs():
 	for child in get_children():
@@ -129,6 +156,11 @@ func remove_mobs():
 func remove_pickles():
 	for child in get_children():
 		if child is Pickle:
+			child.queue_free()
+			
+func remove_portals():
+	for child in get_children():
+		if child is Portal:
 			child.queue_free()
 
 func count_mobs():
@@ -140,24 +172,25 @@ func count_mobs():
 
 func check_level(curr_level):
 	if curr_level == 1:
-		if score == 5:
+		if score == 8:
 			level_up(curr_level)
 			$TextureRect.texture = living_room
 			$TextureRect.position = Vector2(-660, 70)
 	elif curr_level == 2:
-		if score == 6:
+		if score == 10:
 			level_up(curr_level)
 			$TextureRect.texture = portal
 			$TextureRect.scale = Vector2(.9, .9)
 			$TextureRect.position = Vector2(-135, 70)
 	elif curr_level == 3:
-		if score == 7:
+		if score == 15:
 			win_game()
 
 func level_up(curr_level):
 	$TextureRect.modulate = Color(0.324, 0.324, 0.324, 0.914)
 	remove_mobs()
 	remove_pickles()
+	remove_portals()
 	$Player.start($StartPosition.position)
 	$MobTimer.stop()
 	$PickleTimer.stop()
@@ -174,6 +207,7 @@ func level_up(curr_level):
 func win_game():
 	remove_mobs()
 	remove_pickles()
+	remove_portals()
 	$StartTimer.stop()
 	$ScoreTimer.stop()
 	$MobTimer.stop()
