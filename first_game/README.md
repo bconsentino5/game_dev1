@@ -107,3 +107,9 @@ level design
 - 12:30 adding portal gun (credit 4) to make ricks go away for a couple seconds
 - 12:50 making portal gun have gravity, disapear when touched, boom sound when touched, and will make all ricks on screen go away. portal gun is exclusive to level 3
 - 1:00 calling it quits. feels good!
+-----------------------------------------------------
+menu
+- 1:33 working on figma flow of menu
+- 2:15 done (43 minutes on task, 43 minutes total)
+- 3:00 starting to implement menu
+- 3:23 added menu button, 

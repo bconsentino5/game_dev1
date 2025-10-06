@@ -37,6 +37,17 @@ expand_margin_bottom = 5.0
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_64ctp")
 
+[node name="MenuButton" type="MenuButton" parent="."]
+offset_right = 16.0
+offset_bottom = 16.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 43
+text = "☰"
+item_count = 1
+popup/item_0/text = "Start Game"
+popup/item_0/id = 0
+
 [node name="ScoreLabel" type="Label" parent="."]
 offset_left = 8.0
 offset_top = 16.0
