@@ -42,9 +42,9 @@ portal_scene = ExtResource("9_kek77")
 [node name="TextureRect" type="TextureRect" parent="."]
 modulate = Color(0.323584, 0.323584, 0.323584, 0.913725)
 offset_left = -300.0
-offset_top = 70.0
+offset_top = 55.0
 offset_right = 468.0
-offset_bottom = 502.0
+offset_bottom = 487.0
 scale = Vector2(1.8, 1.8)
 texture = ExtResource("3_7mycd")
 stretch_mode = 2
@@ -99,10 +99,16 @@ volume_db = -5.0
 
 [connection signal="health" from="Player" to="." method="increase_lives"]
 [connection signal="hit" from="Player" to="." method="reduce_lives"]
-[connection signal="portal" from="Player" to="." method="remove_mobs"]
 [connection signal="portal" from="Player" to="." method="remove_portals"]
+[connection signal="portal" from="Player" to="." method="remove_mobs"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
 [connection signal="timeout" from="PickleTimer" to="." method="_on_pickle_timer_timeout"]
+[connection signal="home" from="HUD" to="." method="home_screen"]
+[connection signal="mute" from="HUD" to="." method="mute"]
+[connection signal="mute" from="HUD" to="Player" method="_on_hud_mute"]
+[connection signal="pause" from="HUD" to="." method="pause_timers"]
 [connection signal="start_game" from="HUD" to="." method="new_game"]
+[connection signal="unmute" from="HUD" to="." method="unmute"]
+[connection signal="unmute" from="HUD" to="Player" method="_on_hud_unmute"]

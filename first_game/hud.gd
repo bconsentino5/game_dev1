@@ -2,6 +2,31 @@ extends CanvasLayer
 
 # Notifies `Main` node that the button has been pressed
 signal start_game
+signal pause
+signal mute
+signal unmute
+signal home
+
+@export var menu_button : MenuButton
+var popup_menu: PopupMenu
+var muted = false
+
+func _ready():
+	popup_menu = menu_button.get_popup()
+	$HowTo.hide()
+	
+func _on_menu_item_selected(id: int):
+	if id == 0:
+		home.emit()
+	elif id == 1:
+		how_to()
+	elif id == 2:
+		if muted == false:
+			muted = true
+			mute.emit()
+		elif muted == true:
+			muted = false
+			unmute.emit()
 
 func show_message(text, wait_time):
 	$Message.text = text
@@ -48,3 +73,14 @@ func _on_start_button_pressed():
 
 func _on_message_timer_timeout():
 	$Message.hide()
+
+
+func _on_menu_button_button_down() -> void:
+	pause.emit()
+
+func _on_menu_button_pressed() -> void:
+	$MenuButton/PopupMenu.visible = true
+
+func how_to():
+	$Message.hide()
+	$HowTo.show()

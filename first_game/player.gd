@@ -9,6 +9,8 @@ var screen_size # Size of the game window.
 @onready var health_audio = $HealthAudioPlayer
 @onready var portal_audio = $PortalAudioPlayer
 
+var muted = false
+
 func _ready():
 	screen_size = get_viewport_rect().size
 	hide()
@@ -46,15 +48,26 @@ func _on_body_entered(body: Node2D) -> void:
 		if body is Mob:
 			#print(body.name)
 			hit.emit()
-			hit_audio.play()
+			if muted == false:
+				hit_audio.play()
 		elif body is Pickle:
 			health.emit()
-			health_audio.play()
+			if muted == false: 
+				health_audio.play()
 		elif body is Portal:
 			portal.emit()
-			portal_audio.play()
+			if muted == false:
+				portal_audio.play()
 	
 func start(pos):
 	position = pos
 	show()
 	$CollisionShape2D.disabled = false
+
+
+func _on_hud_mute() -> void:
+	muted = true
+
+
+func _on_hud_unmute() -> void:
+	muted = false

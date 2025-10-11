@@ -6,12 +6,41 @@ extends Node
 
 var score
 var lives
-var level
+var level = 0
 var garage = load("res://art/garage_background.webp")
 var living_room = load("res://art/living_room.webp")
 var portal = load("res://art/portal.webp")
+var muted = false
+var game_played = false
 
-
+func _ready():
+	pass
+	
+func pause_timers():
+	if $MobTimer.paused == false:
+		$MobTimer.paused = true
+		$ScoreTimer.paused = true
+		$PickleTimer.paused = true
+		$StartTimer.paused = true
+		$HUD/Message.hide()
+		$TextureRect.modulate = Color(0.324, 0.324, 0.324, 0.914)
+		for child in get_children():
+			if child is Mob:
+				child.queue_free()
+			elif child is Pickle:
+				child.queue_free()
+			elif child is Portal:
+				child.queue_free()
+	elif $MobTimer.paused == true:
+		$MobTimer.paused = false
+		$ScoreTimer.paused = false
+		$PickleTimer.paused = false
+		$StartTimer.paused = false
+		$HUD/HowTo.hide()
+		if level == 0:
+			$HUD/Message.show()
+		$TextureRect.modulate = Color(1, 1, 1, 1)
+	
 func game_over():
 	remove_mobs()
 	remove_pickles()
@@ -22,14 +51,28 @@ func game_over():
 	$BackgroundMusic.stop()
 	$TextureRect.modulate = Color(0.324, 0.324, 0.324, 0.914)
 	$HUD.show_win_lose("Game Over")
+	game_played = true
 
-func new_game():
+func home_screen():
+	level = 0
 	$TextureRect.texture = garage
 	$TextureRect.scale = Vector2(1.8, 1.8)
 	$TextureRect.position = Vector2(-300, 70)
 	level_up(0)
-	$BackgroundMusic.play()
+	$BackgroundMusic.stop()
 	$TextureRect.modulate = Color(0.324, 0.324, 0.324, 0.914)
+	$HUD/Message.text = "Dodge the Ricks!"
+	$Player.hide()
+	$HUD/StartButton.show()
+
+func new_game():
+		$TextureRect.texture = garage
+		$TextureRect.scale = Vector2(1.8, 1.8)
+		$TextureRect.position = Vector2(-300, 70)
+		level_up(0)
+		if muted == false:
+			$BackgroundMusic.play()
+		$TextureRect.modulate = Color(0.324, 0.324, 0.324, 0.914)
 
 func make_mob():
 	var x
@@ -62,7 +105,7 @@ func make_mob():
 	mob.linear_velocity = velocity.rotated(direction)
 	# Spawn the mob by adding it to the Main scene.
 	add_child(mob)
-
+	
 func make_pickle():
 	var x = 100.0
 	var y = 150.0
@@ -121,15 +164,11 @@ func _on_score_timer_timeout() -> void:
 	$HUD.update_score(score)
 	check_level(level)
 
-
 func _on_start_timer_timeout() -> void:
 	$MobTimer.start()
 	$ScoreTimer.start()
 	$PickleTimer.start()
 	$TextureRect.modulate = Color(1, 1, 1, 1)
-
-func _ready():
-	pass
 	
 func increase_lives():
 	lives += 1
@@ -140,7 +179,7 @@ func reduce_lives():
 	if lives > 0:
 		lives -= 1
 		$HUD.update_lives(lives)
-	elif lives < 1:
+	elif lives <= 0:
 		$Player.hide() # Player disappears after being hit.
 		# Must be deferred as we can't change physics properties on a physics callback.
 		$Player/CollisionShape2D.set_deferred("disabled", true)
@@ -215,10 +254,16 @@ func win_game():
 	$TextureRect.modulate = Color(0.324, 0.324, 0.324, 0.914)
 	$HUD.show_win_lose("You win!")
 
-
 func _on_player_hit() -> void:
 	pass # Replace with function body.
 
-
 func _on_player_health(extra_arg_0: bool) -> void:
 	pass # Replace with function body.
+
+func mute():
+	$BackgroundMusic.stop()
+	muted = true
+	
+func unmute():
+	$BackgroundMusic.play()
+	muted = false

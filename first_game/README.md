@@ -109,7 +109,13 @@ level design
 - 1:00 calling it quits. feels good!
 -----------------------------------------------------
 menu
+*LINK TO WIREFRAME: /Users/Bella/Documents/GitHub/game_dev1/first_game/game dev menu wireframe.png*
+
 - 1:33 working on figma flow of menu
 - 2:15 done (43 minutes on task, 43 minutes total)
 - 3:00 starting to implement menu
-- 3:23 added menu button, 
+- 3:28 added menu button, working on its functionality (28 minutes on task, 1 hour 11 minutes total)
+- 5:00 took a while to make pressing make it pause (1 hour 32 minutes on task, 2 hours 43 minutes total)
+- 5:15 finishing implementing the rest of the menu (mute audio, back to home, and how to) (15 minutes on task, 2 hours 58 minutes total)
+- 8:00 done implementing, a few bugs along the way but nothing major (2 hours 45 mins on task, 5 hours 43 minutes total)
+still a little buggy but i cant do much more
