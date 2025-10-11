@@ -109,7 +109,7 @@ level design
 - 1:00 calling it quits. feels good!
 -----------------------------------------------------
 menu
-*LINK TO WIREFRAME: /Users/Bella/Documents/GitHub/game_dev1/first_game/game dev menu wireframe.png*
+*LINK TO WIREFRAME: first_game/game_dev_menu_wireframe.png* 
 
 - 1:33 working on figma flow of menu
 - 2:15 done (43 minutes on task, 43 minutes total)
